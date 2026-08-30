@@ -1,0 +1,24 @@
+# --- Python / Backend ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+backend/.env
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# --- Node / Frontend ---
+node_modules/
+frontend/dist/
+frontend/.vite/
+npm-debug.log*
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+
+# --- Alembic ---
+# (migration versions ARE tracked; nothing to ignore here beyond __pycache__)

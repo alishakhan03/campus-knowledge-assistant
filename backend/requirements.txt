@@ -1,0 +1,56 @@
+# Campus Knowledge Assistant - Backend Requirements
+# NOTE ON macOS HIGH SIERRA (10.13):
+# High Sierra cannot run Python 3.12+ builds cleanly in many cases (missing wheels,
+# some packages require newer macOS SDKs). Python 3.10.x is the safest bet on
+# High Sierra - it has prebuilt wheels for everything below and is still fully
+# supported by FastAPI/SQLAlchemy/LangChain. Install it with pyenv:
+#   pyenv install 3.10.13
+#   pyenv local 3.10.13
+# Do NOT try to run Python 3.12/3.13 on High Sierra - many ML-adjacent packages
+# (grpcio, pydantic-core, tokenizers) stopped shipping prebuilt wheels for it.
+
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+pydantic>=2.9,<3
+pydantic-settings>=2.5,<3
+SQLAlchemy==2.0.31
+alembic==1.13.2
+PyMySQL==1.1.1
+cryptography==42.0.8
+psycopg[binary]==3.1.19
+
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+python-multipart==0.0.9
+
+# Pinned explicitly (not just left as a transitive dependency) because pip's
+# resolver otherwise pulls in a newer grpcio that has no prebuilt wheel for
+# older macOS and tries to compile from source, which fails on High Sierra.
+grpcio==1.67.1
+
+langchain==0.3.27
+langchain-core==0.3.86
+langchain-community==0.3.27
+langchain-google-genai==2.1.12
+langchain-pinecone==0.2.13
+langchain-text-splitters==0.3.11
+pinecone==6.0.2
+
+# 1.24.7 has no prebuilt wheel for many platforms and falls back to a source
+# build that fails on High Sierra. 1.25.5 is confirmed to have a working
+# prebuilt wheel.
+pymupdf==1.25.5
+
+python-dotenv==1.0.1
+
+pytest==8.2.2
+pytest-asyncio==0.23.7
+httpx>=0.27
+
+# --- macOS High Sierra install notes ---
+# grpcio and pymupdf above are pinned to versions confirmed to install from
+# prebuilt wheels. If pip ever still tries to compile something from source,
+# force wheel-only resolution to fail fast with a clear error instead of a
+# long doomed compile:
+#   pip install --only-binary=:all: -r requirements.txt
