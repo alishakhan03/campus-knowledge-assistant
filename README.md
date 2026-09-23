@@ -2,8 +2,6 @@
 
 An AI-powered Retrieval-Augmented Generation (RAG) chatbot that answers student questions using official college documents (attendance rules, exam schedules, scholarships, hostel rules, placement guidelines, etc.) — grounded strictly in uploaded PDFs, with source citations, and a clear "I couldn't find this" fallback when information isn't available.
 
-> **macOS High Sierra + Node 16 note:** This project is deliberately pinned to versions known to work on older toolchains — **Vite 4.x** (not 5, which needs Node 18+), **React 18**, and a backend dependency set that was verified to install and run cleanly. See `backend/requirements.txt` for install notes if you hit build issues with `grpcio` on an old macOS SDK.
-
 ---
 
 ## 1. Features
