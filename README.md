@@ -182,16 +182,8 @@ Creates `admin@example.com` (ADMIN) and `student@example.com` (STUDENT). **Devel
 | CORS error in browser console / login fails with `400` on the `OPTIONS` preflight | `FRONTEND_URL` in backend `.env` must match the frontend's actual origin *exactly*, including whether it's `localhost` or `127.0.0.1` — these are different origins to a browser even though they're the same machine. This project pins Vite to `host: 'localhost'` in `vite.config.js` and the backend additionally auto-allows both the `localhost` and `127.0.0.1` variants of `FRONTEND_URL` as a safety net |
 | `ImportError: cannot import name 'User' from partially initialized module ...` (circular import) | Anything that imports `app.models.*` directly must first import `app.db.base` (which registers every model on `Base.metadata`). `app/main.py` and `seed.py` both do this already — if you add a new standalone script that touches models, add `from app.db import base` before importing any specific model |
 
-## 18. Testing
 
-```bash
-cd backend
-pytest tests/ -v
-```
-
-Tests use an in-memory SQLite database and mock the Pinecone/Gemini calls — no real credentials or network calls required to run the suite.
-
-## 19. Future improvements
+## 18. Future improvements
 
 - FACULTY role
 - DOCX/PPTX support, OCR for scanned PDFs
@@ -199,6 +191,6 @@ Tests use an in-memory SQLite database and mock the Pinecone/Gemini calls — no
 - Rate limiting
 - Streaming LLM responses in the chat UI
 
-## 20. Out of scope (by design)
+## 19. Out of scope (by design)
 
 Payments, notifications, mobile app, voice assistant, multi-agent architectures, Kafka/Redis/Celery/Kubernetes, microservices — kept out to preserve a clean, understandable monolith appropriate for a college minor project.
