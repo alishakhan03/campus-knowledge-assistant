@@ -171,7 +171,6 @@ Creates `admin@example.com` (ADMIN) and `student@example.com` (STUDENT). **Devel
 
 | Problem | Likely cause |
 |---|---|
-| `grpcio` fails to build on macOS | Old SDK on High Sierra — force a prebuilt wheel: `pip install --only-binary=:all: grpcio==1.67.1`, then pin that exact version in `requirements.txt` so a later `pip install` doesn't silently resolve to a newer source-only release |
 | `pymupdf`/`PyMuPDFb` install fails ("no matching distribution") | Some `pymupdf` versions lack a prebuilt binary for older macOS — pin to a version confirmed to have one, e.g. `pymupdf==1.25.5` |
 | `SSLCertVerificationError` on macOS when a Python script makes an HTTPS request | Python.org's installer doesn't wire up macOS's system certificate store — run `open "/Applications/Python 3.1x/Install Certificates.command"` once |
 | `Can't connect to MySQL server` | MySQL not running, or `DATABASE_URL` credentials wrong |
